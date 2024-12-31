@@ -1,0 +1,48 @@
+<div class="d-block">
+    <!-- Left Image -->
+    <img class="img-fluid left-image" src="assets/img/rb_48041.png" alt="Left Image">
+    
+    <!-- Right Image -->
+    <img class="img-fluid right-image" src="assets/img/rb_46939.png" alt="Right Image">
+    
+    <!-- Center Form -->
+    <div class="form-container">
+        <div class="form-section">
+            <!-- Logo -->
+            <img src="assets/img/1000110861-removebg.png" alt="Logo" class="logo">
+            <p class="sub-text">Mahalaxmi Sandwich</p>
+
+            <!-- Form -->
+            <form [formGroup]="form" (ngSubmit)="login()">
+                <!-- Email -->
+                <div class="input-group">
+                    <input type="email" formControlName="username" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <input
+                        [type]="showPassword ? 'text' : 'password'"
+                        formControlName="password"
+                        placeholder="Password"
+                        required
+                        id="password"
+                    />
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        (click)="togglePasswordVisibility()"
+                    >
+                        <i [ngClass]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>
+                </div>
+                
+                
+
+                <!-- Sign In Button -->
+                <button type="submit" class="btn-login">Sign In</button>
+            </form>
+        </div>
+    </div>
+</div>

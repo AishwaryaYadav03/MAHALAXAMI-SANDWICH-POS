@@ -1,0 +1,74 @@
+
+<div class="invoice" *ngIf="orderData">
+    <div class="customer-copy mb-5">
+        <div class="image-container">
+            <img class="logo" src="assets/img/1000110861-removebg.png" routerLink="/home" alt="Logo">
+        </div>
+        <h1 class="my-font">Mahalakshmi Sandwich</h1>
+        <h2 class="my-font2">Bill No. #{{ invoiceNumber }}</h2>
+        
+        <div class="details">
+            <p class="my-font">695 E WARD, LAXMI APPARTMENT, SHOP NO. 45, <br> SHAHUPURI 2nd LANE, KOLHAPUR - 416001</p>
+            <div class="row text-center">
+                <table class="table p-0 mt-1">
+                    <tr class="p-0">
+                        <th class="p-0">Date: {{date}}</th>
+                        <th class="p-0">Time: {{time}}</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table class="table table-bordered-outside text-center mb-2" #tableToPrint>
+            <thead>
+                <tr>
+                    <th class="p-2 my-font">Item</th>
+                    <th class="p-2 my-font">Qty</th>
+                    <th class="px-3 my-font">Rs.</th>
+                    <th class="p-2 my-font">Ext.</th>
+                    <th class="p-2 my-font">Rs.</th>
+                    <th class="p-2 my-font border-left">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderData.saleItemsHelpers">
+                    <td class="p-2 my-font">{{item.item.itemName}}</td>
+                    <td class="p-2 my-font">{{item.saleQty}}</td>
+                    <td class="p-2 my-font">₹{{item.item.itemPrice}}</td>
+                    <td class="p-2 my-font">
+                        <ul class="list-unstyled mb-0">
+                            <li *ngFor="let topping of item.toppings">
+                                <span class="my-font">{{topping.toppingName}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="p-2 my-font">
+                        <ul class="list-unstyled mb-0">
+                            <li *ngFor="let topping of item.toppings">
+                                <span class="my-font" >{{topping.toppingPrice}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="p-2 my-font">₹{{getItemTotal(item)}}</td>
+                </tr>
+                <tr class="border">
+                    <td class="p-2 my-font" colspan="5">Total</td>
+                    <td class="p-2 my-font">₹{{getTotal()}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- <div class="details">
+            <p class="my-font">Total: {{getTotal()}}</p>
+        </div> -->
+        
+        <!-- <div class="total-cost"><span class="my-font">Total Bill Cost: {{ orderData.finalTotal }}</span></div> -->
+    </div>
+</div>
+
+<!-- Buttons -->
+<div class="text-center m-2 no-print no-print-btn">
+    <button class="btn btn-info" type="button" (click)="printBill()">Print Bill</button>
+</div>
+<div class="text-center m-2 no-print">
+    <button class="btn btn-danger" type="button" routerLink="/home">Back</button>
+</div>
